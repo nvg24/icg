@@ -1,0 +1,67 @@
+# Declare variable choice and assign value 4
+choice=4
+filename=""
+
+echo -n "Enter file name:"
+read filename
+
+if [ ! -f $filename ]; then
+    echo -n "File not found: "
+    echo $filename
+    exit
+fi
+
+echo "File contents are:"
+cat $filename
+
+# Print to stdout
+# Loop while the variable choice is equal 5
+# bash while loop
+
+while [ $choice -le 4 ]; do
+ echo ""
+ echo "1. TAC Triple Quadruples"
+ echo "2. Postfix"
+ echo "3. Abstract Syntac Tree"
+ echo "4. Directed Acyclic Graph"
+ echo "5. Exit"
+ echo -n "Please enter your choice [1,2,3 or 4]: "
+# read user input
+read choice 
+
+# bash nested if/else
+echo ""
+if [ $choice -eq 1 ] ; then
+        echo "Printing TAC Triple Quadruples:"
+        ./bin/icg 1 < $filename
+else
+        if [ $choice -eq 2 ] ; then
+                echo "Printing Postfix:"
+               ./bin/icg 2 < $filename
+        else
+                if [ $choice -eq 3 ] ; then
+                        echo "Printing Abstract Syntax Tree:"
+                        ./bin/ast < $filename
+                else
+                    if [ $choice -eq 4 ] ; then
+                            echo "Printing Directed Acyclic Graph:"
+                            ./bin/dag < $filename
+                    else
+                        if [ $choice -eq 5 ] ; then
+                            echo "Exiting"
+                        else
+                                echo ""
+                                echo "Please make a choice between 1-4 !"
+                                echo "1. TAC Triple Quadruples"
+                                echo "2. Postfix"
+                                echo "3. Abstract Syntac Tree"
+                                echo "4. Directed Acyclic Graph"
+                                echo "5. Exit"
+                                echo -n "Please enter your choice  [1,2,3 or 4]: "
+                                choice = 4
+                        fi
+                    fi
+                fi
+        fi
+fi
+done
